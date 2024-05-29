@@ -13,18 +13,53 @@ const adjList = {
 }
 
 function printBreadthFirst(start) {
-  // Your code here 
+
+  //create a queue for nodes to be visited
+  let queue = [start];
+
+  //create a set for the nodes already visited
+  let visited = new Set();
+
+  //start while loop while queue contains elements
+  while(queue.length) {
+
+  //dequeue first element and store in variable
+  let currNode = queue.shift();
+
+  //add node's unvisited neighbors to the back of the queue
+  //add node's unvisited neighbors to visited set
+  if(!visited.has(currNode)) {
+
+      //print out stored node element
+  console.log(currNode);
+
+    visited.add(currNode);
+
+    adjList[currNode].forEach(neighbor => {
+
+      if(!visited.has(neighbor)) {
+
+        queue.push(neighbor);
+
+      }
+      
+    });
+
+  }
+
 }
 
-// console.log("First Test:")
-// printBreadthFirst(3); // Prints 1 through 6 in Breadth-first order, starting with 3
-//                       // One possible solution:  3, 2, 4, 1, 5, 6
-// console.log("Second Test:")
-// printBreadthFirst(6); // Prints 1 through 6 in Breadth-first order, starting with 6
-//                       // One possible solution:  6, 4, 3, 5, 2, 1
-// console.log("Third Test:")
-// printBreadthFirst(4); // Prints 1 through 6 in Breadth-first order, starting with 4
-//                       // One possible solution:  4, 3, 5, 6, 2, 1
+}
+
+console.log("First Test:")
+printBreadthFirst(3); // Prints 1 through 6 in Breadth-first order, starting with 3
+                      // One possible solution:  3, 2, 4, 1, 5, 6
+console.log("Second Test:")
+printBreadthFirst(6); // Prints 1 through 6 in Breadth-first order, starting with 6
+                      // One possible solution:  6, 4, 3, 5, 2, 1
+console.log("Third Test:")
+printBreadthFirst(4); // Prints 1 through 6 in Breadth-first order, starting with 4
+                      // One possible solution:  4, 3, 5, 6, 2, 1
 
 
 /******************** DO NOT MODIFY ANY CODE BELOW THIS LINE *****************/
